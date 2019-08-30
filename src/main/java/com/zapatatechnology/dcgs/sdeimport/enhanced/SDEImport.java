@@ -44,4 +44,11 @@ public class SDEImport {
         }
 
     }
+
+    public static synchronized String importProcess(String input) {
+        ProcessBuilder pb = new ProcessBuilder("echo " + input);
+
+        processBuilder.redirectErrorStream(true);
+        Process p = pb.start();
+    }
 }
