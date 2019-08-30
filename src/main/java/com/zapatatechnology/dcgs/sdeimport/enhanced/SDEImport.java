@@ -48,7 +48,116 @@ public class SDEImport {
     public static synchronized String importProcess(String input) {
         ProcessBuilder pb = new ProcessBuilder("echo " + input);
 
-        processBuilder.redirectErrorStream(true);
+        pb.redirectErrorStream(true);
         Process p = pb.start();
     }
+
+    String prefix = "";
+
+    if(propsgetUsingCYGWIN() 
+        == true){
+prefix = "cmd,/c,"
+    
+    :
 }
+
+String searchFields = "";
+    String operations = "";
+    if(deleteFile
+
+    
+        ){
+searchFields = props.getMainIdColumn(this.i);
+        operations = "delete";
+    }
+
+    
+        else {
+searchFields = props.getKeyFields(this.i);
+        operations = "update_else_insert";
+    }
+    final String pbCommands = prefix + props.getImportedCommand()
+            + ",-o,"
+            + operations
+            + ",-t,"
+            + props.getTable(this.i)
+            + f.getAbsolutePath()
+            + sdeHost
+            + ",-u,"
+            + props.getUser(this.i)
+            + ",-p,"
+            + props.getPasswd(this.i)
+            + ",-K,"
+            + searchFields;
+
+    final ProcessBuilder pb = new ProcessBuilder(pbCommands.split(","));
+
+    pb.redirectErrorStream (
+    true);
+final Process p = pb.start();
+    final java.io.InputStream expout = p.getInputStream();
+    final int exitcode = p.waitFor();
+    if(expout
+
+    
+        != null) {
+final byte[] buf = new byte[512];
+        int len = 0;
+        while ((len = expout.read(buf)) >= 0) {
+//log
+        }
+        if ((exitcode == 0) || (exitcode == 134)) {
+            if (!this.haveAllFiles(f, true)) {
+                continue;
+            }
+        } else {
+//log
+        }
+        Thread.sleep(1000);
+
+
+
+
+    private boolean haveAllFiles(final File FileName, final Boolean deleteFiles) {
+        final File dir = new File(props.getInDir(this.i));
+        if ((dir == null) || !dir.exists() || !dir.isDirectory()) {
+//log
+        } else {
+            File[] files = null;
+            files = dir.listFiles();
+
+            if ((files != null) && (files.length > 0)) {
+//log
+                final FilePriorityQueue fileQueue = new FilePriorityQueue(files.length);
+
+                for (final File f : files) {
+                    fileQueue.offer(f);
+                }
+
+                this.FoundFilesArray = new ArayList<File>();
+                int numFiles = 0;
+                int currentFileNum = 0;
+                int counter = 0;
+
+                while (!fileQueue.isEmpty()) {
+                    final File f = fileQueue.poll();
+
+                    if (!f.isFile()) {
+                        continue;
+                    }
+//log
+
+                    String getFileName = FileNme.getName();
+                    getFileName = getFileName.substring(0, getFileName.length() - 3);
+                    final int FoundFile = f.getName().indexOf(getFileName);
+                    final String currentFileName = f.getName();
+
+                    if ((FoundFile != -1)) {
+                        try {
+                            currentFileNum = Integer.parseInt
+                        }
+                    }
+                }
+            }
+
+        }
