@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.zapatatechnology.dcgs.sdeimport.enhanced;
 
 import java.io.IOException;
@@ -45,7 +41,7 @@ public class SDEImport {
 
     }
 
-    public static synchronized String importProcess(String input) {
+   /** public static synchronized String importProcess(String input) {
         ProcessBuilder pb = new ProcessBuilder("echo " + input);
 
         pb.redirectErrorStream(true);
@@ -54,11 +50,8 @@ public class SDEImport {
 
     String prefix = "";
 
-    if(propsgetUsingCYGWIN() 
-        == true){
-prefix = "cmd,/c,"
-    
-    :
+    if(props.getUsingCYGWIN() == true){
+prefix = "cmd,/c,":
 }
 
 String searchFields = "";
@@ -93,6 +86,7 @@ searchFields = props.getKeyFields(this.i);
     final ProcessBuilder pb = new ProcessBuilder(pbCommands.split(","));
 
     pb.redirectErrorStream (
+            
     true);
 final Process p = pb.start();
     final java.io.InputStream expout = p.getInputStream();
@@ -117,6 +111,8 @@ final byte[] buf = new byte[512];
 
 
 
+
+    
 
     private boolean haveAllFiles(final File FileName, final Boolean deleteFiles) {
         final File dir = new File(props.getInDir(this.i));
@@ -158,6 +154,8 @@ final byte[] buf = new byte[512];
                         }
                     }
                 }
+                
             }
+           **/
 
         }
