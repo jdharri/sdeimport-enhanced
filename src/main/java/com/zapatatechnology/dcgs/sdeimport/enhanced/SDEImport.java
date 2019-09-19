@@ -22,7 +22,7 @@ public class SDEImport {
     public static void main(String[] args) {
         try {
             WatchService watchService = FileSystems.getDefault().newWatchService();
-            Path path = Paths.get("/home/zapataai");
+            Path path = Paths.get("/incoming");
             path.register(watchService, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_MODIFY);
             WatchKey key;
             while ((key = watchService.take()) != null) {
@@ -30,6 +30,9 @@ public class SDEImport {
                     System.out.println(
                             "Event kind:" + event.kind()
                             + ". File affected: " + event.context() + ".");
+                    if(event.kind().equals(StandardWatchEventKinds.ENTRY_CREATE)){
+                        System.out.println("new file created");
+                    }
                 }
                 key.reset();
             }
