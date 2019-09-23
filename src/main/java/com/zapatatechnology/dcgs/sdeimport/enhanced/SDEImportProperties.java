@@ -1,4 +1,3 @@
-
 package com.zapatatechnology.dcgs.sdeimport.enhanced;
 
 import java.util.Properties;
@@ -7,26 +6,26 @@ import java.util.Properties;
  *
  * @author zapataai
  */
-public class SDEImportProperties extends Properties{
-        
-   public   String CGWIN = "cgwyn";
-   public   String DELETE_FILES = "deleteFiles";
-   public   String DRIVER_SDE = "driverSDE";
-   public   String IMPORT_COMMAND = "importCommand";
-   public   String IN_DIR = "inDir";
-   public   String KEY_FIELDS = "keyFields";
-   public   String LAYER_NAME = "layerName";
-   public   String MAIN_ID_COLUMN = "mainIDColumn";
-   public   String MIN_FILE_LATENCY = "minFileLatency";
-   public   String NUM_IMPORTS = "numImports";
-   public   String PASSWD_SDE = "passwdSDE";
-   public   String SDE_DATABASE = "SDEDatabase";
-   public   String SDE_HOST = "SDEHost";
-   public   String SDE_PORT = "SDEPort";
-   public   String SLEEP_TIME = "sleepTime";
-   public   String TABLE_NAME = "tableName";
-   public   String URL_SDE = "urlSDE";
-   public   String USER_SDE = "userSDE";
+public class SDEImportProperties extends Properties {
+
+    public String CGWIN = "cgwyn";
+    public String DELETE_FILES = "deleteFiles";
+    public String DRIVER_SDE = "driverSDE";
+    public String IMPORT_COMMAND = "importCommand";
+    public String IN_DIR = "inDir";
+    public String KEY_FIELDS = "keyFields";
+    public String LAYER_NAME = "layerName";
+    public String MAIN_ID_COLUMN = "mainIDColumn";
+    public String MIN_FILE_LATENCY = "minFileLatency";
+    public String NUM_IMPORTS = "numImports";
+    public String PASSWD_SDE = "passwdSDE";
+    public String SDE_DATABASE = "SDEDatabase";
+    public String SDE_HOST = "SDEHost";
+    public String SDE_PORT = "SDEPort";
+    public String SLEEP_TIME = "sleepTime";
+    public String TABLE_NAME = "tableName";
+    public String URL_SDE = "urlSDE";
+    public String USER_SDE = "userSDE";
 
     public Properties getDefaults() {
         return defaults;
@@ -179,7 +178,5 @@ public class SDEImportProperties extends Properties{
     public void setUSER_SDE(String USER_SDE) {
         this.USER_SDE = USER_SDE;
     }
-   
-   
-    
+
 }
