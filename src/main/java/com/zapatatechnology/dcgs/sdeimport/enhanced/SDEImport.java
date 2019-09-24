@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  * @author zapataai
  */
 public class SDEImport {
-
+static boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
     public static void main(String[] args) {
         try {
             WatchService watchService = FileSystems.getDefault().newWatchService();
@@ -36,6 +36,8 @@ public class SDEImport {
                             + ". File affected: " + event.context() + ".");
                     if (event.kind().equals(StandardWatchEventKinds.ENTRY_CREATE)) {
                         System.out.println("new file created");
+                        callSDEImport("stuff");
+                        
                     }
                 }
                 key.reset();
@@ -80,6 +82,19 @@ public class SDEImport {
         }
         return file.getParent();
     }
+    //https://www.baeldung.com/run-shell-command-in-java
+    public static String callSDEImport(String input) throws IOException{
+        ProcessBuilder builder = new ProcessBuilder();
+        if(isWindows){
+            builder.command("cmd.exe","/c", "dir");
+            System.out.println("is windows");
+        }else{
+            System.out.println("isn't windows");
+            builder.command("sh","-c","ls");
+        }
+        Process process = builder.start();
+        return null;
+    }
     /**
      * public static synchronized String importProcess(String input) {
      * ProcessBuilder pb = new ProcessBuilder("echo " + input);
@@ -90,14 +105,16 @@ public class SDEImport {
      *
      * if(props.getUsingCYGWIN() == true){ prefix = "cmd,/c,": }
      *
-     * String searchFields = ""; String operations = ""; if(deleteFile
-     *
-     *
-     * ){ searchFields = props.getMainIdColumn(this.i); operations = "delete"; }
-     *
-     *
-     * else { searchFields = props.getKeyFields(this.i); operations =
-     * "update_else_insert"; } final String pbCommands = prefix +
+     * String searchFields = ""; 
+     * String operations = ""; 
+     * if(deleteFile){ 
+     * searchFields = props.getMainIdColumn(this.i); operations = "delete"; 
+     * }else { 
+     * searchFields = props.getKeyFields(this.i); 
+     * operations ="update_else_insert"; 
+     * } 
+     * 
+     * final String pbCommands = prefix +
      * props.getImportedCommand() + ",-o," + operations + ",-t," +
      * props.getTable(this.i) + f.getAbsolutePath() + sdeHost + ",-u," +
      * props.getUser(this.i) + ",-p," + props.getPasswd(this.i) + ",-K," +
