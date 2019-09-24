@@ -60,21 +60,23 @@ public class SDEImport {
         }
 
         File file = new File(directoryName + "/" + fileName);
-        try (FileOutputStream out = new FileOutputStream(file);) {
+        if (!file.exists()) {
+            try (FileOutputStream out = new FileOutputStream(file);) {
 
-            SDEImportProperties props = new SDEImportProperties();
+                SDEImportProperties props = new SDEImportProperties();
 
-            Field[] fields = SDEImportProperties.class.getDeclaredFields();
+                Field[] fields = SDEImportProperties.class.getDeclaredFields();
 
-            for (Field field : fields) {
-                System.out.println("key: " + field.getName());
-                String fieldName = field.getName();
-                props.setProperty(fieldName, "");
+                for (Field field : fields) {
+                    System.out.println("key: " + field.getName());
+                    String fieldName = field.getName();
+                    props.setProperty(fieldName, "");
+                }
+                props.store(out, fileName);
+
+            } catch (IOException e) {
+                System.exit(-1);
             }
-            props.store(out, fileName);
-
-        } catch (IOException e) {
-            System.exit(-1);
         }
         return file.getParent();
     }
